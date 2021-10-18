@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}New Post{% endblock %}
+{% block css %}
+<style>
+    body{
+        background-color: blanchedalmond;
+        background-image: url("https://images.unsplash.com/photo-1499343245400-cddc78a01317?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        color: blanchedalmond;
+    }
+    form{
+        width: 400px;
+        height: 250px;
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+<form method="post" action="" enctype="multipart/form-data" class="col-md-4 offset-4 my-5">
+    <h2 class="text-center py-2">Upload an Image!</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+        <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+    </div>
+</form>
+{% endblock %}

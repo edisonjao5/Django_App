@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+{% block css %}
+<style>
+    body{
+        background-color: blanchedalmond;
+        background-image: url("/media/logincito.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        color: blanchedalmond;
+    }
+    form{
+        width: 400px;
+        height: 650px;
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="bg-dark {% if message.tags %}{{message.tags}}{% else %}{% endif %} bg-gradient text-center text-white py-2 fs-3">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+<form method="post" action="" enctype="multipart/form-data" class="col-md-4 offset-4 text-center my-5">
+    <h2 class="text-center py-2">Complete the Form</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+        <button type="submit" class="btn btn-lg btn-warning">Send</button>
+    </div>
+</form>
+{% endblock %}

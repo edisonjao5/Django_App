@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}Home{% endblock %}
+{% block css %}
+<style>
+    body{
+        background-color: blanchedalmond;
+        background-image: url("/media/fondis.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-sm-6 col-md-4">
+            <div class="card my-5 border-warning rounded">
+                {% thumbnail post.image "500x500" crop="center" as im %}
+                <img src="{{ im.url }}" class="card-img-top" alt="...">
+                {% endthumbnail %}
+                <div class="card-body">
+                    <h5 class="card-title">{{post.text}}</h5>
+                    <a href="{% url 'feed:detail' post.id %}" class="btn btn-dark">Go to Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-4 offset-4 py-5 my-5 text-center text-white">
+            <h3>Welcome</h3>
+            <p>Make Your First Post</p>
+            <a href="{% url 'feed:post' %}" class="btn btn-dark btn-lg">Upload you Image</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
